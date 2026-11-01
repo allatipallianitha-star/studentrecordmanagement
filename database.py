@@ -55,13 +55,14 @@ def view_students():
     else:
         print("No student records found.")
     connection.close()
-def search_student(student_id):
+def search_student(search_value):
     connection = sqlite3.connect("students.db")
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM students WHERE student_id = ?", (student_id,))
-    student = cursor.fetchone()  
-    if student:
-        print("Student found:", student)
+    cursor.execute("SELECT * FROM students WHERE CAST(student_id AS TEXT) = ? OR name LIKE ? COLLATE NOCASE""", (search_value, f"%{search_value}%"))
+    students = cursor.fetchall()
+    if students:
+        for student in students:
+             print("Student found:", student)
     else:
         print("No student found")
     connection.close()

@@ -27,8 +27,8 @@ def main():
             elif choice == "2":
                 view_students()
             elif choice == "3":
-                student_id = int(input("Enter Student ID: "))
-                search_student(student_id)
+                search_value = input("Enter student ID or name:")
+                search_student(search_value)
             elif choice == "4":
                 student_id = int(input("Enter Student ID: "))
                 name = input("Enter New Name: ")
